@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Balogun Razaq O. — Application Support Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #080a0f;
+  --surface: #0f1219;
+  --card: #141820;
+  --border: #1e2535;
+  --text: #c8cdd8;
+  --muted: #6b7490;
+  --white: #f0f2f7;
+  --gold: #c9a84c;
+  --gold-soft: rgba(201,168,76,0.15);
+  --blue: #4a8fe2;
+  --blue-soft: rgba(74,143,226,0.12);
+  --green: #3ecf8e;
+  --green-soft: rgba(62,207,142,0.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:"Outfit",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ── NOISE TEXTURE ── */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.4;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 48px;
+  background:rgba(8,10,15,0.85);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.85rem;color:var(--gold);letter-spacing:2px;
+}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{
+  font-size:0.82rem;color:var(--muted);text-decoration:none;
+  letter-spacing:1px;text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--white);}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:120px 48px 80px;
+  position:relative;
+  border-bottom:1px solid var(--border);
+}
+.hero-tag{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.78rem;color:var(--gold);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:24px;
+  animation:fadeUp 0.8s ease both;
+}
+.hero-name{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:900;color:var(--white);
+  line-height:1.0;
+  animation:fadeUp 0.9s ease 0.1s both;
+}
+.hero-name span{color:var(--gold);}
+.hero-title{
+  font-size:clamp(1rem,2.5vw,1.4rem);
+  color:var(--muted);margin-top:20px;
+  font-weight:300;letter-spacing:1px;
+  animation:fadeUp 1s ease 0.2s both;
+}
+.hero-line{
+  width:80px;height:2px;
+  background:var(--gold);
+  margin:32px 0;
+  animation:fadeUp 1s ease 0.3s both;
+}
+.hero-summary{
+  max-width:620px;
+  font-size:1.05rem;line-height:1.75;
+  color:var(--text);font-weight:300;
+  animation:fadeUp 1s ease 0.4s both;
+}
+.hero-cta{
+  display:flex;gap:16px;flex-wrap:wrap;
+  margin-top:40px;
+  animation:fadeUp 1s ease 0.5s both;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 28px;border-radius:6px;
+  font-family:"Outfit",sans-serif;
+  font-size:0.88rem;font-weight:500;
+  text-decoration:none;cursor:pointer;border:none;
+  transition:all 0.25s ease;letter-spacing:0.5px;
+}
+.btn-gold{background:var(--gold);color:#080a0f;font-weight:600;}
+.btn-gold:hover{background:#dbb95c;transform:translateY(-2px);}
+.btn-ghost{
+  background:transparent;color:var(--text);
+  border:1px solid var(--border);
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+.hero-stats{
+  display:flex;gap:48px;flex-wrap:wrap;
+  margin-top:64px;padding-top:40px;
+  border-top:1px solid var(--border);
+  animation:fadeUp 1s ease 0.6s both;
+}
+.stat-num{
+  font-family:"Playfair Display",serif;
+  font-size:2.4rem;color:var(--white);font-weight:700;
+}
+.stat-num span{color:var(--gold);}
+.stat-label{font-size:0.8rem;color:var(--muted);margin-top:4px;letter-spacing:1px;text-transform:uppercase;}
+
+/* ── SECTION BASE ── */
+section{
+  padding:100px 48px;
+  max-width:1100px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.section-tag{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.72rem;color:var(--gold);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.section-title{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--white);font-weight:700;
+  margin-bottom:48px;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+}
+
+/* ── EXPERIENCE ── */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.timeline-item{
+  display:grid;grid-template-columns:200px 1fr;
+  gap:0 40px;
+  padding:40px 0;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.timeline-item:last-child{border-bottom:none;}
+.timeline-left{}
+.timeline-period{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.78rem;color:var(--gold);
+  letter-spacing:1px;line-height:1.6;
+}
+.timeline-company{
+  font-size:0.85rem;color:var(--muted);
+  margin-top:6px;font-weight:400;
+}
+.timeline-role{
+  font-family:"Playfair Display",serif;
+  font-size:1.3rem;color:var(--white);
+  font-weight:700;margin-bottom:16px;
+}
+.timeline-bullets{
+  list-style:none;
+  display:flex;flex-direction:column;gap:10px;
+}
+.timeline-bullets li{
+  font-size:0.92rem;line-height:1.65;
+  color:var(--text);
+  padding-left:18px;
+  position:relative;font-weight:300;
+}
+.timeline-bullets li::before{
+  content:"▸";
+  position:absolute;left:0;
+  color:var(--gold);font-size:0.75rem;top:3px;
+}
+
+/* ── SKILLS ── */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.skill-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:24px;
+  transition:all 0.25s ease;
+  position:relative;overflow:hidden;
+}
+.skill-card::before{
+  content:"";
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0;transition:opacity 0.25s;
+}
+.skill-card:hover{
+  border-color:var(--gold);
+  transform:translateY(-3px);
+  box-shadow:0 8px 30px rgba(0,0,0,0.4);
+}
+.skill-card:hover::before{opacity:1;}
+.skill-category{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.7rem;color:var(--gold);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-tag{
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:5px 12px;
+  font-size:0.8rem;color:var(--text);
+}
+
+/* ── CERTIFICATIONS ── */
+.certs-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:16px;
+}
+.cert-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:22px 24px;
+  display:flex;align-items:center;gap:16px;
+  transition:all 0.25s;
+}
+.cert-card:hover{
+  border-color:var(--blue);
+  box-shadow:0 4px 20px var(--blue-soft);
+}
+.cert-icon{
+  font-size:1.8rem;
+  width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--blue-soft);
+  border-radius:8px;flex-shrink:0;
+}
+.cert-name{font-size:0.9rem;color:var(--white);font-weight:500;line-height:1.4;}
+
+/* ── EDUCATION ── */
+.edu-grid{display:flex;flex-direction:column;gap:16px;}
+.edu-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:24px 28px;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  flex-wrap:wrap;gap:10px;
+  transition:border-color 0.2s;
+}
+.edu-card:hover{border-color:var(--gold);}
+.edu-degree{font-size:1rem;color:var(--white);font-weight:500;}
+.edu-school{font-size:0.87rem;color:var(--muted);margin-top:4px;}
+.edu-year{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.78rem;color:var(--gold);
+  white-space:nowrap;
+}
+
+/* ── CV DOWNLOAD ── */
+.cv-section{
+  background:linear-gradient(135deg,#0f1219,#141820);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:48px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:30px;
+  position:relative;overflow:hidden;
+  margin-bottom: 0;
+}
+.cv-section::before{
+  content:"";
+  position:absolute;top:-60px;right:-60px;
+  width:200px;height:200px;
+  border-radius:50%;
+  background:var(--gold-soft);
+  filter:blur(60px);
+}
+.cv-text h3{
+  font-family:"Playfair Display",serif;
+  font-size:1.8rem;color:var(--white);font-weight:700;
+  margin-bottom:8px;
+}
+.cv-text p{font-size:0.95rem;color:var(--muted);max-width:440px;line-height:1.6;}
+.cv-btns{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ── CONTACT ── */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:16px;
+  margin-bottom:48px;
+}
+.contact-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:22px 24px;
+  display:flex;align-items:center;gap:14px;
+  transition:all 0.25s;
+  text-decoration:none;
+}
+.contact-card:hover{
+  border-color:var(--green);
+  box-shadow:0 4px 20px var(--green-soft);
+  transform:translateY(-2px);
+}
+.contact-icon{font-size:1.4rem;}
+.contact-label{font-size:0.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
+.contact-value{font-size:0.9rem;color:var(--white);font-weight:500;}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:30px 20px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:0.75rem;color:var(--muted);
+  letter-spacing:1px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links{display:none;}
+  #hero{padding:100px 20px 60px;}
+  section{padding:70px 20px;}
+  .timeline-item{grid-template-columns:1fr;}
+  .hero-stats{gap:28px;}
+  .cv-section{padding:30px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BRO // PORTFOLIO</div>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero" style="position:relative;z-index:1;">
+  <div class="hero-tag">// Application Support Engineer</div>
+  <h1 class="hero-name">Balogun<br>Razaq <span>O.</span></h1>
+  <p class="hero-title">Application Support • Product Support • Customer Experience Expert</p>
+  <div class="hero-line"></div>
+  <p class="hero-summary">
+    Experienced professional with a strong track record in application support, product support and customer experience. 
+    Skilled in incident management, log analysis, system monitoring, and deployment support — keeping systems stable, 
+    users happy, and businesses running.
+  </p>
+  <div class="hero-cta">
+    <a class="btn btn-gold" href="https://drive.google.com/uc?export=download&id=1w8oIg4oIRgOFvz0dJEy47yPnhPKYmWuY">
+      ⬇ Download CV
+    </a>
+    <a class="btn btn-ghost" href="#contact">Get In Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">4<span>+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">3<span>+</span></div>
+      <div class="stat-label">Companies</div>
+    </div>
+    <div>
+      <div class="stat-num">6<span>+</span></div>
+      <div class="stat-label">Certifications</div>
+    </div>
+    <div>
+      <div class="stat-num">P1<span>/P2</span></div>
+      <div class="stat-label">Incident Mgmt</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-tag">// Work History</div>
+  <h2 class="section-title">Experience</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-period">May 2025<br>— Present</div>
+        <div class="timeline-company">Parkway Project</div>
+      </div>
+      <div>
+        <div class="timeline-role">Application Support Engineer</div>
+        <ul class="timeline-bullets">
+          <li>Strong incident management (P1/P2) with structured troubleshooting, root cause analysis, and service restoration.</li>
+          <li>Practical use of Zendesk, Zoho Desk, and Freshdesk for issue tracking, escalation, and resolution management.</li>
+          <li>Log analysis and system monitoring using Datadog, Grafana, and New Relic — identifying bottlenecks and resolving transaction failures.</li>
+          <li>Database and data validation experience including reviewing transaction records for reconciliation and investigation.</li>
+          <li>Supported enterprise applications including CBS, TMS, wallet systems (Readycash, Parkway), and payment platforms (Bank3D).</li>
+          <li>Application deployments, configuration updates, and environment support across staging, pilot, and production.</li>
+          <li>Redis configuration and performance optimization, including private IP migration for system efficiency.</li>
+          <li>Strong understanding of transaction lifecycle, reconciliation, and payment issue resolution in banking integrations (NIBSS, IGR).</li>
+          <li>Familiarity with Linux environments, system checks, and operational support tasks.</li>
+          <li>Exposure to DevOps practices: infrastructure collaboration, system documentation, and environment audits.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-period">Apr 2024<br>— May 2025</div>
+        <div class="timeline-company">Parkway Project</div>
+      </div>
+      <div>
+        <div class="timeline-role">Product Support / Service Owner</div>
+        <ul class="timeline-bullets">
+          <li>Developed deep product knowledge and supported continuous improvement initiatives.</li>
+          <li>Managed product administration requests including configuration, charge-backs, onboarding, access forms, and KYC.</li>
+          <li>Set up new products, gathered customer feedback, updated obsolete products, and coordinated product launches.</li>
+          <li>Enhanced user experience and achieved company goals aligned with product responsibilities.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-period">Sept 2022<br>— Apr 2024</div>
+        <div class="timeline-company">CredPal</div>
+      </div>
+      <div>
+        <div class="timeline-role">Customer Support Associate</div>
+        <ul class="timeline-bullets">
+          <li>Onboarded and verified new customers through structured processes.</li>
+          <li>Tracked customer experiences, analyzed feedback, resolved complaints, and managed dissatisfied customers.</li>
+          <li>Executed upselling and cross-selling strategies to drive revenue.</li>
+          <li>Documented complaints, prepared FAQs, and produced monthly operational reports.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-period">Jul 2021<br>— Sept 2022</div>
+        <div class="timeline-company">United Bank for Africa</div>
+      </div>
+      <div>
+        <div class="timeline-role">Customer Experience Expert</div>
+        <ul class="timeline-bullets">
+          <li>Served as customer interface via email, chat, social media, and phone channels.</li>
+          <li>Identified customer needs and responded promptly across all channels.</li>
+          <li>Tracked experiences and collaborated with teams for continuous service enhancement.</li>
+          <li>Analyzed feedback, documented processes, and managed complaints effectively.</li>
+          <li>Executed upselling and cross-selling both locally and internationally.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--surface);max-width:100%;padding:100px 48px;">
+<div style="max-width:1100px;margin:0 auto;">
+  <div class="section-tag">// Capabilities</div>
+  <h2 class="section-title">Skills & Tools</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-category">Support & Monitoring</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Incident Management</span>
+        <span class="skill-tag">Datadog</span>
+        <span class="skill-tag">Grafana</span>
+        <span class="skill-tag">New Relic</span>
+        <span class="skill-tag">Log Analysis</span>
+        <span class="skill-tag">P1/P2 Response</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Ticketing Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Zendesk</span>
+        <span class="skill-tag">Zoho Desk</span>
+        <span class="skill-tag">Freshdesk</span>
+        <span class="skill-tag">Escalation Mgmt</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Applications & Platforms</div>
+      <div class="skill-tags">
+        <span class="skill-tag">CBS</span>
+        <span class="skill-tag">TMS</span>
+        <span class="skill-tag">Readycash</span>
+        <span class="skill-tag">Bank3D</span>
+        <span class="skill-tag">NIBSS</span>
+        <span class="skill-tag">IGR Collections</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Technical Skills</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Redis</span>
+        <span class="skill-tag">SQL/Data Validation</span>
+        <span class="skill-tag">Deployments</span>
+        <span class="skill-tag">HTML & CSS</span>
+        <span class="skill-tag">Git</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Communication</span>
+        <span class="skill-tag">Problem Solving</span>
+        <span class="skill-tag">Stakeholder Mgmt</span>
+        <span class="skill-tag">Time Management</span>
+        <span class="skill-tag">Team Collaboration</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-category">Productivity</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Microsoft Office Suite</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">CRM Systems</span>
+        <span class="skill-tag">Documentation</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-tag">// Credentials</div>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🌐</div>
+      <div class="cert-name">HTML, CSS & JavaScript Certification</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">☁️</div>
+      <div class="cert-name">Cloud Native Applications Architecture Certification</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📊</div>
+      <div class="cert-name">Microsoft Data Analyst Certification</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🎧</div>
+      <div class="cert-name">Customer Service Certification</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🔗</div>
+      <div class="cert-name">CRM Certification</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🤖</div>
+      <div class="cert-name">ALX AiCE — AI Career Essentials Certification</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background:var(--surface);max-width:100%;padding:100px 48px;">
+<div style="max-width:1100px;margin:0 auto;">
+  <div class="section-tag">// Academic Background</div>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">BSc in Statistics</div>
+        <div class="edu-school">Ajayi Crowther University</div>
+      </div>
+      <div class="edu-year">2024</div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">NYSC — Tyonex Nigeria Ltd.</div>
+        <div class="edu-school">National Youth Service Corps</div>
+      </div>
+      <div class="edu-year">2018 – 2019</div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">Higher National Diploma in Chemistry</div>
+        <div class="edu-school">Yaba College of Technology</div>
+      </div>
+      <div class="edu-year">2015 – 2017</div>
+    </div>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">ND in Science Laboratory Technology</div>
+        <div class="edu-school">Yaba College of Technology</div>
+      </div>
+      <div class="edu-year">2010 – 2012</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CV DOWNLOAD -->
+<section style="padding:80px 48px;">
+  <div class="cv-section">
+    <div class="cv-text">
+      <h3>Download My CV</h3>
+      <p>Get the full picture — my complete work history, skills, and credentials in one document.</p>
+    </div>
+    <div class="cv-btns">
+      <a class="btn btn-gold"
+         href="https://drive.google.com/uc?export=download&id=1w8oIg4oIRgOFvz0dJEy47yPnhPKYmWuY">
+        ⬇ Download CV
+      </a>
+      <a class="btn btn-ghost"
+         href="https://drive.google.com/file/d/1w8oIg4oIRgOFvz0dJEy47yPnhPKYmWuY/view?usp=sharing"
+         target="_blank">
+        👁 Preview
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--surface);max-width:100%;padding:100px 48px;">
+<div style="max-width:1100px;margin:0 auto;">
+  <div class="section-tag">// Get In Touch</div>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <a class="contact-card" href="mailto:balogunrazaq0909@gmail.com">
+      <span class="contact-icon">✉️</span>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">balogunrazaq0909@gmail.com</div>
+      </div>
+    </a>
+    <a class="contact-card" href="mailto:razaqbalogun0909@gmail.com">
+      <span class="contact-icon">📧</span>
+      <div>
+        <div class="contact-label">Alt Email</div>
+        <div class="contact-value">razaqbalogun0909@gmail.com</div>
+      </div>
+    </a>
+    <a class="contact-card" href="tel:+2347065060800">
+      <span class="contact-icon">📞</span>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+234 706 506 0800</div>
+      </div>
+    </a>
+    <a class="contact-card" href="https://www.linkedin.com/in/razaq-balogun-94bb38178" target="_blank">
+      <span class="contact-icon">💼</span>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">razaq-balogun-94bb38178</div>
+      </div>
+    </a>
+    <a class="contact-card" href="#">
+      <span class="contact-icon">📍</span>
+      <div>
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Ijaiye Alimosho, Lagos</div>
+      </div>
+    </a>
+  </div>
+</div>
+</section>
+
+<footer>
+  © 2026 Balogun Razaq Olamilekan &nbsp;|&nbsp; Built with precision &nbsp;|&nbsp; Lagos, Nigeria
+</footer>
+
+</body>
+</html>
