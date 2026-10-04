@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://borak002.github.io/BRO-Portfolio/sitemap.xml
