@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://borak002.github.io/BRO-Portfolio/sitemap.xml
+Sitemap: https://bro-portfolio-lilac.vercel.app/sitemap.xml
